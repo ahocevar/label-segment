@@ -1,0 +1,38 @@
+{
+  "name": "label-segment",
+  "version": "1.0.0",
+  "description": "Find suitable segments of a path for its label text",
+  "main": "index.js",
+  "browser": "dist/label-segment.js",
+  "scripts": {
+    "build": "webpack",
+    "docs": "documentation readme -s API index.js",
+    "prepublish": "npm run build & npm run docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ahocevar/label-segment.git"
+  },
+  "keywords": [
+    "line",
+    "label"
+  ],
+  "author": "Andreas Hocevar <andreas.hocevar@gmail.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ahocevar/label-segment/issues"
+  },
+  "homepage": "https://github.com/ahocevar/label-segment#readme",
+  "dependencies": {
+    "linelabel": "^0.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.24.1",
+    "documentation": "^5.0.1",
+    "webpack": "^3.4.1"
+  }
+}

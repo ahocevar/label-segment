@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://unpkg.com/textpath@1.0.1/dist/textpath.js"></script>
+  <script src="../dist/label-segment.js"></script>
+</head>
+<body>
+  <canvas id="myCanvas" width="320" height="70"></canvas>
+  <script>
+  var label = 'label';
+  var path = [
+    [300, 33], [280, 31], [260, 30], [240, 31], [220, 33],
+    [200, 37], [180, 39], [160, 37], [140, 36], [120, 32],
+    [100, 24], [80, 20], [60, 24], [40, 38], [20, 70]
+  ];
+
+  var canvas = document.getElementById('myCanvas');
+  var ctx = canvas.getContext('2d');
+  ctx.font = '40px serif';
+  ctx.textBaseline = 'baseline';
+  ctx.textAlign = 'center';
+  ctx.strokeWidth = 1;
+
+  function showPath(path, color) {
+    ctx.beginPath();
+    ctx.moveTo.apply(ctx, path[0]);
+    for (var i = 1, ii = path.length; i < ii; ++i) {
+      ctx.lineTo.apply(ctx, path[i]);
+    }
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  }
+
+  showPath(path, 'red');
+
+  function measureText(text) {
+    return ctx.measureText(text).width;
+  }
+
+  var labelLength = measureText(label);
+  var labelPath = labelSegment(path, Math.PI / 32, labelLength);
+
+  showPath(labelPath, 'blue');
+
+  function draw(letter, x, y, angle) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.fillText(letter, 0, 0);
+    ctx.restore();
+  }
+
+  textPath(label, labelPath, measureText, draw);
+  </script>
+</body>
+</html>
